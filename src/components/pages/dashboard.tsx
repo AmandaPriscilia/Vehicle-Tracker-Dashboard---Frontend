@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Car, CircleNotch, Speedometer, WarningCircle } from '@phosphor-icons/react';
 import { useVehicleStore } from '@/stores/vehicleStore';
-import { ViewDetailsButton, TryAgainButton, AddNewVehicleButton } from '@/components/ui/button';
+import { ViewDetailsButton, TryAgainButton } from '@/components/ui/button';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -10,6 +10,10 @@ export default function Dashboard() {
 
   const [filteredStatus, setFilteredStatus] = useState('all');
   const [sortBy, setSortBy] = useState('latest');
+
+  useEffect(() => {
+    fetchVehicles(); // Ambil data saat komponen dimuat
+  }, []);
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
@@ -120,16 +124,6 @@ export default function Dashboard() {
           <p className="text-xl font-semibold">Error: Could not load vehicles.</p>
           <p className="text-base text-red-500">{error}</p>
           <TryAgainButton onClick={fetchVehicles} />
-        </div>
-      )}
-
-      {/* No Vehicles */}
-      {!loading && !error && vehicles.length === 0 && (
-        <div className="flex flex-col items-center justify-center h-64 text-slate-500 bg-gray-50 border border-gray-200 rounded-lg p-6">
-          <Car className="h-16 w-16 text-gray-400 mb-4" />
-          <p className="text-xl font-semibold mb-2">No vehicles found.</p>
-          <p className="text-base text-gray-600">It looks like there are no vehicles to display yet.</p>
-          <AddNewVehicleButton />
         </div>
       )}
 

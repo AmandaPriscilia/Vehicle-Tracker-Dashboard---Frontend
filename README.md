@@ -1,69 +1,91 @@
-# React + TypeScript + Vite
+# Vehicle Tracker Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Gambaran Umum
+Dashboard untuk memantau armada kendaraan yang dibangun dengan teknologi:
 
-Currently, two official plugins are available:
+- React + TypeScript (Vite)
+- TailwindCSS untuk styling
+- Zustand untuk manajemen state
+- Komponen ShadCN UI
+- React Router untuk navigasi
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Fitur Utama
+- Menampilkan daftar kendaraan dengan status terkini
+- Detail informasi telemetri setiap kendaraan
+- Tampilan responsif untuk perangkat mobile dan desktop
+- Penanganan loading dan error state
+- Filter dan sorting data kendaraan
 
-## Expanding the ESLint configuration
+## Cara Menggunakan
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone repository:
+```
+git clone https://github.com/username/repo.git
+cd repo
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies:
 ```
+npm install
+```
+
+3. Jalankan aplikasi:
+```
+npm run dev
+```
+
+Buka http://localhost:3000 di browser Anda.
+
+## Konfigurasi API
+
+Secara default menggunakan mock data. Untuk menggunakan API sungguhan:
+
+1. Buat file .env di root project:
+```
+VITE_API_URL=https://api.example.com
+```
+
+2. Update file src/api/vehicleApi.ts:
+```typescript
+const API_URL = import.meta.env.VITE_API_URL;
+
+export const getVehicles = async () => {
+  const response = await fetch(`${API_URL}/vehicles`);
+  // ...
+};
+```
+
+## Struktur Project
+
+```
+src/
+  api/          # Layer API 
+  components/   # Komponen UI
+  pages/        # Halaman aplikasi
+  stores/       # Global state
+  types/        # Type definitions
+  App.tsx       # Komponen utama
+  main.tsx      # Entry point
+```
+
+## Testing
+
+Jalankan test:
+```
+npm test
+```
+
+## Build Produksi
+
+Untuk membuat versi produksi:
+```
+npm run build
+```
+
+File hasil build akan berada di folder dist/.
+
+## Catatan
+
+- Saat ini menggunakan data dummy untuk simulasi
+- Untuk penggunaan real, sesuaikan endpoint API
+- Dokumentasi lengkap tersedia di folder docs/

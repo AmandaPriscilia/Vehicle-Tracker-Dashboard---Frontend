@@ -20,8 +20,8 @@ Dashboard untuk memantau armada kendaraan yang dibangun dengan teknologi:
 
 1. Clone repository:
 ```
-git clone https://github.com/username/repo.git
-cd repo
+git clone https://github.com/AmandaPriscilia/Vehicle-Tracker-Dashboard---Frontend.git
+cd Vehicle-Tracker-Dashboard---Frontend
 ```
 
 2. Install dependencies:
@@ -72,20 +72,11 @@ src/
 
 Jalankan test:
 ```
-npm test
+npm run dev
 ```
 
-## Build Produksi
-
-Untuk membuat versi produksi:
-```
-npm run build
-```
-
-File hasil build akan berada di folder dist/.
 
 ## Catatan
 
 - Saat ini menggunakan data dummy untuk simulasi
 - Untuk penggunaan real, sesuaikan endpoint API
-- Dokumentasi lengkap tersedia di folder docs/
